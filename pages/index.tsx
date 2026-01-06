@@ -45,8 +45,7 @@ export default function Home() {
 
         
 
-        {/* Apple Cards Carousel Section - 8 images in carousel */}
-        {/* <AppleCardsCarouselSection /> */}
+      
 
         {/* Services Section - Hover animations on cards */}
         <ServicesSection />

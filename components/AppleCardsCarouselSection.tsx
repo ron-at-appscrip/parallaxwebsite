@@ -12,9 +12,7 @@ if (typeof window !== 'undefined') {
 /**
  * Apple Cards Carousel Section
  * 
- * - 100dvh height, no background
- * - Section neeche se upar aata hai (100dvh)
- * - Phir cards horizontal scroll hote hain
+ * - Cards horizontal scroll hote hain on scroll
  * - Saare cards ke baad next section par scroll
  */
 export default function AppleCardsCarouselSection() {
@@ -76,54 +74,26 @@ export default function AppleCardsCarouselSection() {
     const ctx = gsap.context(() => {
       if (!sectionRef.current || !cardsContainerRef.current) return
 
-      // Initial position: section neeche se start
-      gsap.set(sectionRef.current, {
-        y: window.innerHeight,
-      })
-
       // Calculate total scroll distance needed for all cards
       const cardWidth = 350 + 24 // card width + gap
       const totalCardsWidth = cardWidth * cards.length
       const viewportWidth = window.innerWidth
       const maxScroll = Math.max(0, totalCardsWidth - viewportWidth + 200)
       
-      // Pin section and control animations
+      // Pin section and control horizontal scroll
       const scrollTrigger = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: 'top top',
-        end: () => `+=${window.innerHeight + maxScroll}`,
+        end: () => `+=${maxScroll}`,
         pin: true,
         anticipatePin: 1,
         scrub: 1,
         onUpdate: (self) => {
           const progress = self.progress
+          const scrollAmount = progress * maxScroll
           
-          // Phase 1 (0-25%): Section neeche se upar aata hai
-          if (progress < 0.25) {
-            const phase1Progress = progress / 0.25
-            gsap.set(sectionRef.current, {
-              y: (1 - phase1Progress) * window.innerHeight,
-            })
-          } else {
-            // Section upar aa chuka hai
-            gsap.set(sectionRef.current, {
-              y: 0,
-            })
-          }
-          
-          // Phase 2 (25-90%): Cards horizontal scroll
-          if (progress >= 0.25 && progress < 0.9) {
-            const phase2Progress = (progress - 0.25) / 0.65
-            const scrollAmount = phase2Progress * maxScroll
-            
-            if (cardsContainerRef.current) {
-              cardsContainerRef.current.scrollLeft = scrollAmount
-            }
-          } else if (progress >= 0.9) {
-            // Ensure cards are fully scrolled
-            if (cardsContainerRef.current) {
-              cardsContainerRef.current.scrollLeft = maxScroll
-            }
+          if (cardsContainerRef.current) {
+            cardsContainerRef.current.scrollLeft = scrollAmount
           }
         },
       })
@@ -146,9 +116,9 @@ export default function AppleCardsCarouselSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[100dvh] flex items-center justify-center overflow-hidden"
+      className="relative flex items-center justify-center overflow-hidden py-12 sm:py-16 md:py-20"
     >
-      <div className="w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="w-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
             Our Collection

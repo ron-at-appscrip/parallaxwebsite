@@ -107,7 +107,7 @@ export default function HeroParallaxSection() {
   return (
     <section
       ref={containerRef}
-      className="relative flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-black py-12 sm:py-16 md:py-20 min-h-[80vh]"
+      className="relative flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-black py-12 sm:py-16 md:py-20 h-full"
     >
       <div className="mb-12 sm:mb-16 md:mb-20 text-center px-4">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
