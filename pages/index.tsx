@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import HeroSection from '../components/HeroSection'
+import HeroParallaxSection from '../components/HeroParallaxSection'
 import AboutSection from '../components/AboutSection'
+import AppleCardsCarouselSection from '../components/AppleCardsCarouselSection'
 import ServicesSection from '../components/ServicesSection'
 import GallerySection from '../components/GallerySection'
 import TestimonialsSection from '../components/TestimonialsSection'
@@ -38,20 +40,25 @@ export default function Home() {
         {/* Hero Section - Cursor tracking parallax effect */}
         <HeroSection />
 
-        {/* About/Features Section - Scroll-triggered fade animations */}
-        <AboutSection />
+        {/* Hero Parallax Section - Scroll effect with rotation and translation */}
+        <HeroParallaxSection />
+
+        
+
+        {/* Apple Cards Carousel Section - 8 images in carousel */}
+        {/* <AppleCardsCarouselSection /> */}
 
         {/* Services Section - Hover animations on cards */}
         <ServicesSection />
 
         {/* Gallery/Portfolio Section - Scroll animations on images */}
-        <GallerySection />
+        {/* <GallerySection /> */}
 
         {/* Testimonials Section - Sliding/fade-in quotes */}
         <TestimonialsSection />
 
         {/* Contact Form Section - Input fields and submit button */}
-        <ContactSection />
+        {/* <ContactSection /> */}
 
         {/* Footer - Basic info and links */}
         <Footer />
